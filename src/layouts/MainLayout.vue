@@ -1,102 +1,102 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
+  <q-layout view="lHh Lpr lFf" class="bg-grey-1">
+    <!-- Header -->
+    <header
+      class="text-black0"
+      :style="{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'start',
+        padding: '20px',
+        height: headerHeight,
+        backgroundImage: `url(${banner})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        transition: 'height 0.5s ease',
+      }"
     >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
+      <!-- Logo -->
+      <q-img :src="logo" :width="isMobile ? '80%' : '20%'" />
 
-        <EssentialLink
-          v-for="link in linksList"
-          :key="link.title"
-          v-bind="link"
-        />
+      <!-- Navegação desktop -->
+      <div v-if="!isMobile" class="row q-gutter-sm text-white montserrat items-center">
+        <q-btn flat size="1rem" @click="$router.push({ path: '/' })">Home</q-btn>
+        <q-btn flat size="1rem" @click="$router.push({ path: '/tratamentos' })">Tratamentos</q-btn>
+        <q-btn flat size="1rem" @click="$router.push({ path: '/contato' })">Contato</q-btn>
+        <q-btn flat size="1rem" @click="$router.push({ path: '/sobre' })">Sobre</q-btn>
+      </div>
+
+      <!-- Botão menu (mobile) -->
+      <q-btn v-if="isMobile" flat round icon="menu" color="white" @click="drawerOpen = true" />
+    </header>
+
+    <!-- Drawer mobile -->
+    <q-drawer v-if="isMobile" v-model="drawerOpen" side="right" overlay bordered>
+      <q-list>
+        <q-item clickable @click="navigateTo('/')">
+          <q-item-section>Home</q-item-section>
+        </q-item>
+        <q-item clickable @click="navigateTo('/tratamentos')">
+          <q-item-section>Tratamentos</q-item-section>
+        </q-item>
+        <q-item clickable @click="navigateTo('/contato')">
+          <q-item-section>Contato</q-item-section>
+        </q-item>
+        <q-item clickable @click="navigateTo('/sobre')">
+          <q-item-section>Sobre</q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
+    <!-- Página -->
     <q-page-container>
       <router-view />
+
+      <q-page-sticky position="bottom-right" :offset="[18, 18]">
+        <q-btn
+          fab
+          :icon="biWhatsapp"
+          color="green"
+          type="a"
+          href="https://wa.me/5541996275685?text=Ola,%20gostaria%20de%20saber%20mais%20sobre%20os%20tratamentos"
+          target="_blank"
+        />
+      </q-page-sticky>
     </q-page-container>
+
+    <!-- Rodapé -->
+    <div style="background-color: #ccc; height: 150px" class="montserrat q-pa-xl">
+      <div class="row justify-center">
+        <q-img :src="logoDark" :width="isMobile ? '70%' : '20%'" />
+      </div>
+    </div>
   </q-layout>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import EssentialLink, { type EssentialLinkProps } from 'components/EssentialLink.vue';
+import { ref, computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useQuasar } from 'quasar';
+import logo from '../assets/logo_without_background.png';
+import logoDark from '../assets/logo_dark.png';
+import banner from '../assets/banner.jpg';
+import { biWhatsapp } from '@quasar/extras/bootstrap-icons';
 
-const linksList: EssentialLinkProps[] = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
+const route = useRoute();
+const router = useRouter();
+const $q = useQuasar();
 
-const leftDrawerOpen = ref(false);
+const drawerOpen = ref(false);
 
-function toggleLeftDrawer () {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
+const isMobile = computed(() => $q.screen.lt.md);
+
+const headerHeight = computed(() => {
+  return route.path === '/' ? '500px' : '120px';
+});
+
+function navigateTo(path: string) {
+  // eslint-disable-next-line @typescript-eslint/no-floating-promises
+  router.push({ path });
+  drawerOpen.value = false;
 }
 </script>
