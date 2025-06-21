@@ -10,40 +10,46 @@
         :class="{ 'justify-center-important': isMobile }"
       >
         <CardTreatment
-          title="Massagem"
-          body="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo veritatis nemo cum suscipit."
+          title="Drenagem Linfática"
+          time="01 hora"
+          value1="R$ 120,00"
+          value2="R$ 500,00"
+          :body="[
+            'Aceleração da recuperação pós-operatória',
+            'Melhora da circulação linfática e venosa',
+            'Redução do inchaço (edema)',
+            'Combate à celulite',
+            'Alívio de dores e desconfortos: Principalmente em casos de linpedemaedema, tensão pré-menstrual, má circulação ou sensação de pernas pesadas.',
+            'Melhora do funcionamento do sistema imunológico: Como o sistema linfático está ligado à imunidade, sua estimulação ajuda o corpo a sedefender melhor.',
+            'Sensação de relaxamento',
+          ]"
         />
+
         <CardTreatment
-          title="Drenagem linfática"
-          body="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo veritatis nemo cum suscipit."
+          title="Massagem modeladora"
+          time="01h30"
+          value1="R$ 150,00"
+          value2="R$ 650,00"
+          :body="[
+            'Redução de medidas e remodelação da silhueta',
+            'Combate à celulite e melhora do tônus muscular',
+            'Melhora da circulação sanguínea e linfática, o que aumenta a oxigenação dos tecidos',
+            'Contribuição para o bem-estar geral e redução das tensões',
+          ]"
         />
+
         <CardTreatment
-          title="Limpeza de pele"
-          body="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo veritatis nemo cum suscipit."
-        />
-        <CardTreatment
-          title="Massagem"
-          body="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo veritatis nemo cum suscipit."
-        />
-        <CardTreatment
-          title="Massagem"
-          body="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo veritatis nemo cum suscipit."
-        />
-        <CardTreatment
-          title="Massagem"
-          body="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo veritatis nemo cum suscipit."
-        />
-        <CardTreatment
-          title="Massagem"
-          body="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo veritatis nemo cum suscipit."
-        />
-        <CardTreatment
-          title="Massagem"
-          body="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo veritatis nemo cum suscipit."
-        />
-        <CardTreatment
-          title="Massagem"
-          body="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo veritatis nemo cum suscipit."
+          title="Massagem super detox"
+          time="01h40"
+          value1="R$ 150,00"
+          value2="R$ 600,00"
+          :body="[
+            'Redução da celulite e aumento do tônus muscular',
+            'Eliminação de toxinas e retenção de líquidos',
+            'Redução de medidas',
+            'Melhora da circulação e do metabolismo local',
+            'Sensação de bem-estar',
+          ]"
         />
       </div>
     </div>

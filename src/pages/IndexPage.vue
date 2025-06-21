@@ -5,19 +5,32 @@
       <div class="cinzel text-h3" style="letter-spacing: 4px">Sobre nós</div>
       <div style="display: flex; flex-wrap: wrap" class="q-mt-md text-grey-9 text-body1 montserrat">
         <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, error dolore eius
-          asperiores esse corrupti dolores excepturi ducimus enim doloremque! Pariatur consequatur
-          iste odit unde cumque distinctio fugit possimus est.
+          Sou terapeuta integrativa de Araucária – PR, dedicada ao cuidado e à promoção do bem-estar
+          de forma natural e personalizada. Acredito que cada corpo tem sua própria linguagem e que,
+          quando olhado com atenção e respeito, pode revelar caminhos de equilíbrio e cura.
         </div>
         <div>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis aliquam omnis deserunt
-          doloremque nihil ducimus perspiciatis temporibus quisquam tenetur, magni, cum a quidem
-          voluptatem! Eum aperiam minus quisquam in rerum!
+          Cada sessão é única, voltada para suas necessidades e objetivos, com acolhimento, escuta e
+          técnica. Meu propósito é que você se sinta mais leve, conectada(o) com seu corpo e em
+          harmonia com sua saúde. Seja muito bem-vinda(o) a esse espaço de cuidado e transformação.
+          🌿
         </div>
       </div>
-      <div style="display: flex; align-items: center" class="q-mt-xl q-gutter-x-xl">
-        <q-img :src="image" :width="isMobile ? '100%' : '45%'" />
-      </div>
+
+      <q-card class="q-mt-xl">
+        <q-card-section align="center">
+          <div class="montserrat q-mb-sm">Tratamentos em domicílio, nós vamos até você!</div>
+          <q-btn
+            color="pink-5"
+            unelevated
+            type="a"
+            href="https://wa.me/5541996275685?text=Ola,%20gostaria%20de%20agendar%20um%20tratamento"
+            target="_blank"
+            >Entrar em contato</q-btn
+          >
+          <div class="text-caption q-mt-lg">Atendimentos em Curitiba e região metropolitana</div>
+        </q-card-section>
+      </q-card>
     </div>
 
     <div style="height: 550px; margin-top: 100px" class="bg-pink-2 q-pa-lg">
@@ -29,6 +42,7 @@
         >
           TRATAMENTOS
         </div>
+
         <q-carousel
           v-model="slide"
           transition-prev="slide-right"
@@ -42,19 +56,130 @@
           height="400px"
           infinite
           class="bg-pink-2 q-mt-md"
+          v-if="isMobile"
+        >
+          <q-carousel-slide :name="1" class="column no-wrap">
+            <div
+              class="row justify-start items-center q-gutter-xs q-col-gutter no-wrap"
+              v-if="isMobile"
+            >
+              <CardT
+                title="Drenagem Linfática"
+                time="01 hora"
+                value1="R$ 120,00"
+                value2="R$ 500,00"
+                :body="[
+                  'Aceleração da recuperação pós-operatória',
+                  'Melhora da circulação linfática e venosa',
+                  'Redução do inchaço (edema)',
+                  'Combate à celulite',
+                  'Alívio de dores e desconfortos: Principalmente em casos de linpedemaedema, tensão pré-menstrual, má circulação ou sensação de pernas pesadas.',
+                  'Melhora do funcionamento do sistema imunológico: Como o sistema linfático está ligado à imunidade, sua estimulação ajuda o corpo a sedefender melhor.',
+                  'Sensação de relaxamento',
+                ]"
+              />
+            </div>
+          </q-carousel-slide>
+
+          <q-carousel-slide :name="2" class="column no-wrap" v-if="isMobile">
+            <div
+              class="row justify-start items-center q-gutter-xs q-col-gutter no-wrap"
+              v-if="isMobile"
+            >
+              <CardT
+                title="Massagem modeladora"
+                time="01h30"
+                value1="R$ 150,00"
+                value2="R$ 650,00"
+                :body="[
+                  'Redução de medidas e remodelação da silhueta',
+                  'Combate à celulite e melhora do tônus muscular',
+                  'Melhora da circulação sanguínea e linfática, o que aumenta a oxigenação dos tecidos',
+                  'Contribuição para o bem-estar geral e redução das tensões',
+                ]"
+              />
+            </div>
+          </q-carousel-slide>
+
+          <q-carousel-slide :name="3" class="column no-wrap" v-if="isMobile">
+            <div
+              class="row justify-start items-center q-gutter-xs q-col-gutter no-wrap"
+              v-if="isMobile"
+            >
+              <CardT
+                title="Massagem super detox"
+                time="01h40"
+                value1="R$ 150,00"
+                value2="R$ 600,00"
+                :body="[
+                  'Redução da celulite e aumento do tônus muscular',
+                  'Eliminação de toxinas e retenção de líquidos',
+                  'Redução de medidas',
+                  'Melhora da circulação e do metabolismo local',
+                  'Sensação de bem-estar',
+                ]"
+              />
+            </div>
+          </q-carousel-slide>
+        </q-carousel>
+
+        <q-carousel
+          v-model="slide"
+          transition-prev="slide-right"
+          transition-next="slide-left"
+          swipeable
+          animated
+          control-color="pink"
+          navigation
+          :arrows="!isMobile"
+          :padding="!isMobile"
+          height="400px"
+          infinite
+          class="bg-pink-2 q-mt-md"
+          v-if="!isMobile"
         >
           <q-carousel-slide :name="1" class="column no-wrap">
             <div class="row justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-              <CardT v-if="!isMobile" />
-              <CardT v-if="!isMobile" />
-              <CardT />
-            </div>
-          </q-carousel-slide>
-          <q-carousel-slide :name="2" class="column no-wrap">
-            <div class="row justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-              <CardT v-if="!isMobile" />
-              <CardT v-if="!isMobile" />
-              <CardT />
+              <CardT
+                title="Drenagem Linfática"
+                time="01 hora"
+                value1="R$ 120,00"
+                value2="R$ 500,00"
+                :body="[
+                  'Aceleração da recuperação pós-operatória',
+                  'Melhora da circulação linfática e venosa',
+                  'Redução do inchaço (edema)',
+                  'Combate à celulite',
+                  'Alívio de dores e desconfortos: Principalmente em casos de linpedemaedema, tensão pré-menstrual, má circulação ou sensação de pernas pesadas.',
+                  'Melhora do funcionamento do sistema imunológico: Como o sistema linfático está ligado à imunidade, sua estimulação ajuda o corpo a sedefender melhor.',
+                  'Sensação de relaxamento',
+                ]"
+              />
+              <CardT
+                title="Massagem modeladora"
+                time="01h30"
+                value1="R$ 150,00"
+                value2="R$ 650,00"
+                :body="[
+                  'Redução de medidas e remodelação da silhueta',
+                  'Combate à celulite e melhora do tônus muscular',
+                  'Melhora da circulação sanguínea e linfática, o que aumenta a oxigenação dos tecidos',
+                  'Contribuição para o bem-estar geral e redução das tensões',
+                ]"
+              />
+              <CardT
+                title="Massagem super detox"
+                time="01h40"
+                value1="R$ 150,00"
+                value2="R$ 600,00"
+                :body="[
+                  'Redução da celulite e aumento do tônus muscular',
+                  'Eliminação de toxinas e retenção de líquidos',
+                  'Redução de medidas',
+                  'Melhora da circulação e do metabolismo local',
+                  'Sensação de bem-estar',
+                ]"
+              />
             </div>
           </q-carousel-slide>
         </q-carousel>
@@ -102,7 +227,6 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import image from '../assets/image.jpg';
 import CardT from 'src/components/CardT.vue';
 import CardContact from 'src/components/CardContact.vue';
 import { useQuasar } from 'quasar';

@@ -4,7 +4,8 @@
     <q-card class="montserrat" style="width: 310px; background-color: transparent">
       <q-card-section>
         <div class="text-h6">{{ props.title }}</div>
-        <div class="text-body1">{{ props.body }}</div>
+        <div class="text-body2">- {{ props.body[0] }}</div>
+        <div class="text-body2">- {{ props.body[1] }}</div>
       </q-card-section>
       <q-card-actions>
         <q-btn flat @click="openDrawer">AGENDAR</q-btn>
@@ -24,8 +25,41 @@
         </div>
 
         <div class="text-body1 q-mb-md" style="flex-grow: 1">
-          <div>{{ props.body }}</div>
-          <div class="text-subtitle1 q-mt-sm">R$ 100,00</div>
+          <q-card class="q-mb-md">
+            <q-card-section>
+              <div class="text-h6" style="font-size: 16px">Principais benefícios</div>
+              <div v-for="(item, index) in props.body" :key="index" class="q-mb-md text-body2">
+                - {{ item }}
+              </div>
+            </q-card-section>
+          </q-card>
+
+          <q-card>
+            <q-card-section>
+              <div class="text-h6" style="font-size: 16px">Sessões</div>
+
+              <q-list bordered separator>
+                <q-item clickable v-ripple>
+                  <q-item-section>
+                    <q-item-label>{{ value1 }}</q-item-label>
+                    <q-item-label caption>1 sessão</q-item-label>
+                  </q-item-section>
+                </q-item>
+                <q-item clickable v-ripple>
+                  <q-item-section>
+                    <q-item-label>{{ value2 }}</q-item-label>
+                    <q-item-label caption>Pacote de 5 sessões</q-item-label>
+                  </q-item-section>
+                </q-item>
+                <q-item clickable v-ripple>
+                  <q-item-section>
+                    <q-item-label>{{ time }}</q-item-label>
+                    <q-item-label caption>Tempo aproximado da sessão</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-card-section>
+          </q-card>
         </div>
 
         <!-- Botões no final do drawer -->
@@ -50,7 +84,10 @@ import { ref } from 'vue';
 
 interface IProps {
   title: string;
-  body: string;
+  body: string[];
+  time: string;
+  value1: string;
+  value2: string;
 }
 
 const props = defineProps<IProps>();
